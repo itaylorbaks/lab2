@@ -11,9 +11,10 @@ public abstract class AbstractPlayer implements Player {
 
     public abstract int decideRank();
 
-    public AbstractPlayer(){
-        Random random = new Random();
-        this.playerNumber = random.nextInt(2) + 1; 
+    public AbstractPlayer(int playerNumber){
+        // Random random = new Random();
+        // this.playerNumber = random.nextInt(2) + 1; 
+        this.playerNumber = playerNumber;
         this.hand = new Card[0];
         this.bookScore = 0; 
     }
@@ -49,11 +50,11 @@ public abstract class AbstractPlayer implements Player {
 
     public void gainCards(Card[] cards){
         Card[] newCards = new Card[cards.length + this.hand.length];
-        for (int i = 0; i < cards.length; i++){
-            newCards[i] = cards[i];
+        for (int i = 0; i < this.hand.length; i++){
+            newCards[i] = this.hand[i];
         }
-        for (int j = 0; j < this.hand.length; j++){
-            newCards[cards.length + j] = this.hand[j];
+        for (int j = 0; j < cards.length; j++){
+            newCards[this.hand.length + j] = cards[j];
         }
         this.hand = newCards;
     }
@@ -72,15 +73,25 @@ public abstract class AbstractPlayer implements Player {
     }
 
     public void checkBooks(){
+    int count = 0;
     for (int i = 0; i < this.hand.length; i++){
-        int thisRank = this.hand[i].getRank();
-        if (countCards(thisRank) == 4){
+        for (int j = 0; j < this.hand.length; j++){
+            if (this.hand[j].getRank() == this.hand[i].getRank()){
+                count++;
+                System.out.println("Matched!");
+                System.out.println("Count is: " + count);
+            }
+        }
+        System.out.println("Iteration " + i + "ends.");
+        if (count == 4){
             bookScore++;
-            removeCards(thisRank);
+            removeCards(this.hand[i].getRank());
             i = -1;
         }
+        count = 0;
+        }
     }
-}
+
 
 
     public int getNumCards(){
