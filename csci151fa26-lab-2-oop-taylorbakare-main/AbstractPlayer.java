@@ -12,8 +12,6 @@ public abstract class AbstractPlayer implements Player {
     public abstract int decideRank();
 
     public AbstractPlayer(int playerNumber){
-        // Random random = new Random();
-        // this.playerNumber = random.nextInt(2) + 1; 
         this.playerNumber = playerNumber;
         this.hand = new Card[0];
         this.bookScore = 0; 
