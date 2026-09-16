@@ -57,6 +57,10 @@ public class RandomPlayer extends AbstractPlayer{
             System.out.println("Suit: " + randPlayer.hand[i].getSuit() + " Rank: " +randPlayer.hand[i].getRank());
         }
 
+        System.out.println(randPlayer.decideRank());
+        System.out.println(randPlayer.decideRank());
+        System.out.println(randPlayer.decideRank());
+
 
 
     }
